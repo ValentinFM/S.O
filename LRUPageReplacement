@@ -1,0 +1,27 @@
+
+import java.util.*;
+public class LRUPageReplacement {
+    public static void lru(int[] pages, int capacity) {
+        List<Integer> memory = new ArrayList<>();
+        int pageFaults = 0;
+        for (int page : pages) {
+            if (memory.contains(page)) {
+                // Página ya en memoria: se actualiza como la más reciente
+                memory.remove((Integer) page);
+                memory.add(page);
+            } else {
+                pageFaults++;
+                if (memory.size() == capacity) {
+                    // Reemplazo: se elimina la menos recientemente usada
+                    int removed = memory.removeFirst();
+                    System.out.println("Página eliminada: " + removed);
+                }
+                memory.add(page);
+            }
+            System.out.println("Memoria actual: " + memory);
+        }
+        System.out.println("\nTotal de fallos de página: " + pageFaults);
+    }
+}
+LRUPageReplacement.java
+Mostrando LRUPageReplacement.java
